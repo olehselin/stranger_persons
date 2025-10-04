@@ -1,5 +1,5 @@
 import "./App.css";
-import StrangerPersons from "./components/StrangerPersons";
+import StrangerPersons from "./pages/StrangerPersons";
 
 function App() {
   return <StrangerPersons />;
