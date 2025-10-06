@@ -21,8 +21,8 @@ const StrangerPersons = () => {
     isRefetching,
   } = useQuery(createStrangerPersonsByNameQueryOptions(debounceSearch));
 
-  const { data: AllPersons } = useQuery(createStrangerPersonsQueryOptions());
-  console.log("AllPersons: ", AllPersons);
+  const { data: allPersons } = useQuery(createStrangerPersonsQueryOptions());
+  console.log("AllPersons: ", allPersons);
 
   return (
     <>
@@ -70,7 +70,7 @@ const StrangerPersons = () => {
           }
           <ViewAllPersons
             showMainPersons={showMainPersons}
-            AllPersons={AllPersons}
+            allPersons={allPersons}
           />
         </div>
       </div>
