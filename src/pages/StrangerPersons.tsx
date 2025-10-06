@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import { createStrangerPersonsQueryOptions } from "@/api/queryOptions/createStrangerPersonsQueryOptions";
+import { createStrangersQueryOptions } from "@/api/queryOptions/createStrangerPersonsQueryOptions"; 
 import { Input } from "@/shared/components/ui/input";
 import { useState } from "react";
-import createStrangerPersonsByNameQueryOptions from "@/api/queryOptions/createStrangerPersonsQueryByNameOptions";
+import createStrangersByNameQueryOptions from "@/api/queryOptions/createStrangerPersonsQueryByNameOptions";
 import type { GetStrangerOptions } from "@/types/GetStrangerOptions";
 
 import useDebounce from "@/hooks/useDebounce";
 import { Card } from "@/shared/components/ui/card";
 import ViewAllPersons from "@/components/ViewAllPersons";
 
-const StrangerPersons = () => {
+const Strangers = () => {
   const [search, setSearch] = useState("");
   const [showMainPersons, setShowMainPersons] = useState(false);
   const debounceSearch = useDebounce(search);
@@ -19,9 +19,9 @@ const StrangerPersons = () => {
     isLoading,
     isSuccess,
     isRefetching,
-  } = useQuery(createStrangerPersonsByNameQueryOptions(debounceSearch));
+  } = useQuery(createStrangersByNameQueryOptions(debounceSearch));
 
-  const { data: allPersons } = useQuery(createStrangerPersonsQueryOptions());
+  const { data: allPersons } = useQuery(createStrangersQueryOptions());
   console.log("AllPersons: ", allPersons);
 
   return (
@@ -47,6 +47,7 @@ const StrangerPersons = () => {
           {search.length === 0 && <div>Not typing anything.</div>}
 
           {isSuccess &&
+
             person.map((p: GetStrangerOptions) => (
               <Card className="p-5" key={p._id}>
                 <div className="flex flex-col">
@@ -78,4 +79,4 @@ const StrangerPersons = () => {
   );
 };
 
-export default StrangerPersons;
+export default Strangers;

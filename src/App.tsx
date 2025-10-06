@@ -1,8 +1,8 @@
 import "./App.css";
-import StrangerPersons from "./pages/StrangerPersons";
+import Strangers from "./pages/Strangers";
 
 function App() {
-  return <StrangerPersons />;
+  return <Strangers />;
 }
 
 export default App;

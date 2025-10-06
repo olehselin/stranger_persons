@@ -1,10 +1,10 @@
 import { queryOptions } from "@tanstack/react-query";
-import { getStrangerPersonsByName } from "../endpoints/getStrangerPersonsByName";
+import { getStrangersByName } from "../endpoints/getStrangersByName";
 
-export default function createStrangerPersonsByNameQueryOptions(search: string) {
+export default function createStrangersByNameQueryOptions(search: string) {
   return queryOptions({
     queryKey: ["person", search],
-    queryFn: () => getStrangerPersonsByName(search),
+    queryFn: () => getStrangersByName(search),
     enabled: !!search,
   });
 
