@@ -1,18 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { createStrangersQueryOptions } from "@/api/queryOptions/createStrangerPersonsQueryOptions"; 
+import { createStrangersQueryOptions } from "@/api/queryOptions/createPersonsQueryOptions";
 import { Input } from "@/shared/components/ui/input";
 import { useState } from "react";
-import createStrangersByNameQueryOptions from "@/api/queryOptions/createStrangerPersonsQueryByNameOptions";
-import type { GetStrangerOptions } from "@/types/GetStrangerOptions";
-
+import createStrangersByNameQueryOptions from "@/api/queryOptions/createPersonsQueryByNameOptions";
 import useDebounce from "@/hooks/useDebounce";
-import { Card } from "@/shared/components/ui/card";
 import ViewAllPersons from "@/components/ViewAllPersons";
+import type { Stranger } from "@/types/Stranger";
+import StrangerCardComponent from "@/components/CardPerson";
 
-const Strangers = () => {
+const MainPage = () => {
   const [search, setSearch] = useState("");
   const [showMainPersons, setShowMainPersons] = useState(false);
   const debounceSearch = useDebounce(search);
+  
+
+  // console.log("debounceSearch", debounceSearch)
 
   const {
     data: person = [],
@@ -21,8 +23,10 @@ const Strangers = () => {
     isRefetching,
   } = useQuery(createStrangersByNameQueryOptions(debounceSearch));
 
-  const { data: allPersons } = useQuery(createStrangersQueryOptions());
-  console.log("AllPersons: ", allPersons);
+  // console.log("person", person)
+
+  const { data: allStrangerPersons } = useQuery(createStrangersQueryOptions());
+  // console.log("allStrangerPersons: ", allStrangerPersons);
 
   return (
     <>
@@ -47,19 +51,8 @@ const Strangers = () => {
           {search.length === 0 && <div>Not typing anything.</div>}
 
           {isSuccess &&
-
-            person.map((p: GetStrangerOptions) => (
-              <Card className="p-5" key={p._id}>
-                <div className="flex flex-col">
-                  <div>
-                    Photo: <img src={p.photo} />
-                  </div>
-                  <div>Name: {p.name}</div>
-                  <div>Born: {p.born}</div>
-                  <div>Gender: {p.gender}</div>
-                  <div>Status: {p.status}</div>
-                </div>
-              </Card>
+            person.map((p: Stranger) => (
+              <StrangerCardComponent key={p._id} person={p} />
             ))}
         </div>
 
@@ -71,7 +64,7 @@ const Strangers = () => {
           }
           <ViewAllPersons
             showMainPersons={showMainPersons}
-            allPersons={allPersons}
+            allStrangerPersons={allStrangerPersons}
           />
         </div>
       </div>
@@ -79,4 +72,4 @@ const Strangers = () => {
   );
 };
 
-export default Strangers;
+export default MainPage;

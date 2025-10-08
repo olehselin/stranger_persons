@@ -1,8 +1,8 @@
 import "./App.css";
-import Strangers from "./pages/Strangers";
+import MainPage from "./pages/MainPage";
 
 function App() {
-  return <Strangers />;
+  return <MainPage />;
 }
 
 export default App;

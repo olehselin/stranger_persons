@@ -1,7 +1,8 @@
-const BASE_URl = "https://stranger-things-api.fly.dev/";
+import { BASE_URl_STRANGER } from "../baseUrls";
 
 export default async function getStrangers() {
-  const response = await fetch(`${BASE_URl}` + `api/v1/characters`);
+  const response = await fetch(`${BASE_URl_STRANGER}` + `api/v1/characters`);
   const data = await response.json();
+  // console.log("api characters", data);
   return data;
 }
