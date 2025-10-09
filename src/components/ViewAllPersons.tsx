@@ -2,15 +2,15 @@ import type { GetStrangerOptions } from "@/types/StrangerThingsAPI/GetStrangerOp
 
 type Props = {
   showMainPersons: boolean;
-  allStrangerPersons?: GetStrangerOptions[];
+  allPersons?: GetStrangerOptions[];
 };
 
-const ViewallStrangerPersons: React.FC<Props> = ({ showMainPersons, allStrangerPersons = [] }) => {
+const ViewallStrangerPersons: React.FC<Props> = ({ showMainPersons, allPersons = [] }) => {
   return (
     showMainPersons && (
       <div>
         <h1>Main Persons:</h1>
-        {allStrangerPersons?.map((person: GetStrangerOptions) => (
+        {allPersons?.map((person: GetStrangerOptions) => (
           <p key={person._id}>{person.name}</p>
         ))}
       </div>

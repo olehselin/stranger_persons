@@ -1,8 +1,8 @@
 import { BASE_URl_TMBD } from "../baseUrls";
 import { apiKey } from "../apiKey";
 
-export const getActorDetails = async (person_id: number) => {
-  const response = await fetch(`${BASE_URl_TMBD}` + `/person/${person_id}`, {
+export const getActorDetails = async (portrayedBy: string) => {
+  const response = await fetch(`${BASE_URl_TMBD}` + `/person/${portrayedBy}`, {
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },

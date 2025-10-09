@@ -1,9 +1,9 @@
 import { queryOptions } from "@tanstack/react-query";
 import { getActorDetails } from "../endpoints/getActorDetails";
 
-export function createActorsQueryOptions(person_id: number) {
+export function createActorQueryOptions(portrayedBy: string) {
   return queryOptions({
     queryKey: ["actors"],
-    queryFn: () => getActorDetails(person_id),
+    queryFn: () => getActorDetails(portrayedBy),
   });
 }
