@@ -5,15 +5,13 @@ import { useState } from "react";
 import createStrangersByNameQueryOptions from "@/api/queryOptions/createPersonsQueryByNameOptions";
 import useDebounce from "@/hooks/useDebounce";
 import ViewAllPersons from "@/components/ViewAllPersons";
-import type { Stranger } from "@/types/Stranger";
+import type { Stranger } from "@/types/StrangerThingsAPI/Stranger";
 import StrangerCardComponent from "@/components/CardPerson";
 
 const MainPage = () => {
   const [search, setSearch] = useState("");
   const [showMainPersons, setShowMainPersons] = useState(false);
   const debounceSearch = useDebounce(search);
-  
-
   // console.log("debounceSearch", debounceSearch)
 
   const {

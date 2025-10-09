@@ -1,10 +1,9 @@
 import { queryOptions } from "@tanstack/react-query";
-import getActors from "../endpoints/getActors";
+import getActor from "../endpoints/getActor";
 
 export function createActorsQueryOptions(query: string) {
   return queryOptions({
     queryKey: ["actors"],
-    queryFn: () => getActors(query),
-    
+    queryFn: () => getActor(query),
   });
 }

@@ -1,4 +1,4 @@
-import type { GetStrangerOptions } from "@/types/GetStrangerOptions";
+import type { GetStrangerOptions } from "@/types/StrangerThingsAPI/GetStrangerOptions";
 
 type Props = {
   showMainPersons: boolean;

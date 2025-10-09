@@ -1,6 +1,6 @@
 import { createActorsQueryOptions } from "@/api/queryOptions/createActorsQueryOptions";
 import { Card } from "@/shared/components/ui/card";
-import type { Stranger } from "@/types/Stranger";
+import type { Stranger } from "@/types/StrangerThingsAPI/Stranger";
 import { useQuery } from "@tanstack/react-query";
 
 interface StrangerCardProps {
@@ -14,9 +14,7 @@ const StrangerCardComponent: React.FC<StrangerCardProps> = ({ person }) => {
     createActorsQueryOptions(portrayedBy)
   );
 
-  console.log()
-
-  console.log("detailsPerson", detailsPerson);
+  console.log("ID Person: ", detailsPerson?.results[0].id);
 
   // console.log(aliases)
   return (

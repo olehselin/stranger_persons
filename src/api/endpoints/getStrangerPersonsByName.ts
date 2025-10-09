@@ -1,4 +1,4 @@
-import type { GetStrangerOptions } from "@/types/GetStrangerOptions";
+import type { GetStrangerOptions } from "@/types/StrangerThingsAPI/GetStrangerOptions";
 import { BASE_URl_STRANGER } from "../baseUrls";
 
 export const getStrangersByName = async (search: string) => {
@@ -6,7 +6,7 @@ export const getStrangersByName = async (search: string) => {
     `${BASE_URl_STRANGER}` + `api/v1/characters?name=${search}`
   );
   const data = await response.json();
-  console.log("Stranger Person:", data);
+  // console.log("Stranger Person:", data);
   data.map((person: GetStrangerOptions) => person.name);
 
   return data;
