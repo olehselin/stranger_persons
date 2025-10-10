@@ -1,7 +1,7 @@
+import createActorQueryOptions from "@/api/queryOptions/createActorsQueryOptions";
 import { Card } from "@/shared/components/ui/card";
 import type { Stranger } from "@/types/StrangerThingsAPI/Stranger";
 import { useQuery } from "@tanstack/react-query";
-import { createActorQueryOptions } from "@/api/queryOptions/createActorQueryOptions";
 
 interface StrangerCardProps {
   person: Stranger;
@@ -11,14 +11,7 @@ const StrangerCardComponent: React.FC<StrangerCardProps> = ({ person }) => {
   const { name, aliases, born, status, gender, photo, portrayedBy } = person;
   console.log("portrayedBy: ", portrayedBy);
   const { data: actor } = useQuery(createActorQueryOptions(portrayedBy));
-
-  console.log("ID Person: ", actor);
-
-  // const { data: detailsPerson } = useQuery(
-  //   createActorDetailsQueryOptions(actor?.results[0].id)
-  // );
-
-  // console.log("detailsPerson:", detailsPerson);
+  console.log("actor: ", actor);
 
   return (
     <Card className="p-5">
@@ -57,7 +50,7 @@ const StrangerCardComponent: React.FC<StrangerCardProps> = ({ person }) => {
           </div>
 
           <div>
-            <span className="font-medium">Birthday: </span> {portrayedBy}
+            <span className="font-medium">Birthday: </span> {}
           </div>
         </div>
       </div>
