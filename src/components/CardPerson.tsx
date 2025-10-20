@@ -1,61 +1,46 @@
-import createActorQueryOptions from "@/api/queryOptions/createActorsQueryOptions";
 import { Card } from "@/shared/components/ui/card";
-import type { Stranger } from "@/types/StrangerThingsAPI/Stranger";
+// import CardActor from "./CardActor";
 import { useQuery } from "@tanstack/react-query";
+import createPersonByNameQueryOptions from "@/api/queryOptions/createPersonsQueryByNameOptions";
+import type { Person } from "@/types/StrangerThingsAPI/Person";
 
-interface StrangerCardProps {
-  person: Stranger;
-}
+// Component to display a card with details about a Stranger Things character
+const PersonCard: React.FC<{ person: Person }> = ({ person }) => {
+  const { data } = useQuery(createPersonByNameQueryOptions(person.name || ""));
 
-const StrangerCardComponent: React.FC<StrangerCardProps> = ({ person }) => {
-  const { name, aliases, born, status, gender, photo, portrayedBy } = person;
-  console.log("portrayedBy: ", portrayedBy);
-  const { data: actor } = useQuery(createActorQueryOptions(portrayedBy));
-  console.log("actor: ", actor);
+  console.log("data", data);
 
   return (
     <Card className="p-5">
       <div className="flex flex-col gap-1 p-5">
         <div>
-          <span className="font-medium">Name:</span> {name}
-        </div>
-
-        <div>
-          <span className="font-medium">Aliases:</span> {aliases.join(", ")}
+          <span className="font-medium">Name:</span> {person.name}
         </div>
 
         <div className="flex flex-col gap-2">
           <span className="font-medium">Photo:</span>
           <img
-            src={photo}
+            src={person.photo}
             alt={`${name} photo`}
             loading="lazy"
             className="w-50 h-50 rounded-lg"
           />
         </div>
         <div>
-          <span className="font-medium">Born:</span> {born}
+          <span className="font-medium">Born:</span> {person.born}
         </div>
         <div>
-          <span className="font-medium">Gender:</span> {gender}
+          <span className="font-medium">Gender:</span> {person.gender}
         </div>
         <div>
-          <span className="font-medium">Status:</span> {status}
+          <span className="font-medium">Status:</span> {person.status}
         </div>
-
-        <div>
-          <span className="font-light">More Details About Actor:</span>
-          <div>
-            <span className="font-medium">Real Name: </span> {portrayedBy}
-          </div>
-
-          <div>
-            <span className="font-medium">Birthday: </span> {}
-          </div>
-        </div>
+        {/* <div>
+          <CardActor portrayedBy={} />
+        </div> */}
       </div>
     </Card>
   );
 };
 
-export default StrangerCardComponent;
+export default PersonCard;

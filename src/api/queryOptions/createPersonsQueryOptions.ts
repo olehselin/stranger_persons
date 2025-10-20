@@ -1,9 +1,9 @@
 import { queryOptions } from "@tanstack/react-query";
-import getStrangers from "../endpoints/getPersons";
+import getPersons from "../endpoints/getPersons";
 
-export function createStrangersQueryOptions() {
+export default function createPersonsQueryOptions() {
   return queryOptions({
     queryKey: ["persons"],
-    queryFn: () => getStrangers(),
+    queryFn: () => getPersons(),
   });
 }

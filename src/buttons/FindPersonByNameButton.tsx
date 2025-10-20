@@ -1,10 +1,9 @@
 import createPersonByNameQueryOptions from "@/api/queryOptions/createPersonsQueryByNameOptions";
 import { Input } from "@/shared/components/ui/input";
-import type { Stranger } from "@/types/StrangerThingsAPI/Stranger";
 import { useQuery } from "@tanstack/react-query";
-import StrangerCardComponent from "./CardPerson";
 import useDebounce from "@/hooks/useDebounce";
 import { useState } from "react";
+import CardPerson from "@/components/CardPerson";
 
 const FindPersonByNameButton = () => {
   const [search, setSearch] = useState("");
@@ -35,8 +34,8 @@ const FindPersonByNameButton = () => {
         )}
         {search.length === 0 && <div>Not typing anything.</div>}
         {isSuccessPerson &&
-          person.map((p: Stranger) => (
-            <StrangerCardComponent key={p._id} person={p} />
+          person.map((p: string) => (
+            <CardPerson key={p} person={p} />
           ))}
       </div>
     </div>
